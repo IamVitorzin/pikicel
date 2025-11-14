@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pikicel Bot</title>
+
+<style>
+ /* ===== FUNDO NEON ANIMADO ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #07000a, #0a0014, #08000f);
+    background-size: 300% 300%;
+    animation: fundoNeon 12s ease infinite;
+    color: white;
+}
+
+@keyframes fundoNeon {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== HEADER COM LUZ PASSANDO ===== */
+header {
+    padding: 40px 20px;
+    text-align: center;
+    background: linear-gradient(90deg, #ff006e, #5a00ff);
+    position: relative;
+    overflow: hidden;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -150px;
+    width: 150px; height: 100%;
+    background: rgba(255,255,255,0.3);
+    transform: skewX(-25deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -150px; }
+    50% { left: 120%; }
+    100% { left: 120%; }
+}
+
+/* ===== CONTEÚDO ===== */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* ===== CARD COM BORDA NEON PULSANTE ===== */
+.card {
+    background: #111;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #ff0095;
+    box-shadow: 0 0 12px #ff0095a8;
+    animation: neonPulse 3s infinite ease-in-out;
+    transition: .3s;
+}
+
+@keyframes neonPulse {
+    0% { box-shadow: 0 0 10px #ff0095; }
+    50% { box-shadow: 0 0 23px #ff00c8; }
+    100% { box-shadow: 0 0 10px #ff0095; }
+}
+
+/* EFEITO DE FLUTUAR NO HOVER */
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 0 30px #ff00c8;
+}
+
+/* ===== BOTÃO COM BRILHO EM MOVIMENTO ===== */
+.btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff006e, #ff2cb3);
+    padding: 12px 25px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -40px;
+    width: 40px; height: 100%;
+    background: rgba(255,255,255,0.4);
+    transform: skewX(-25deg);
+    animation: brilhoBtn 2.5s infinite;
+}
+
+@keyframes brilhoBtn {
+    0% { left: -40px; }
+    50% { left: 120%; }
+    100% { left: 120%; }
+}
+
+.btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 20px #ff2cb3;
+}
+
+/* ===== LISTA DE PLANOS (já neon) ===== */
+.planos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.planos li a {
+    display: block;
+    background: #111;
+    padding: 12px 18px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid #0af;
+    transition: .2s;
+}
+
+.planos li a:hover {
+    background: #0af;
+    color: #000;
+    transform: scale(1.02);
+}
+
+.planos .permanente a {
+    background: #200;
+    border-color: #f00;
+}
+
+.planos .permanente a:hover {
+    background: #f00;
+    color: #000;
+}
+
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 600px) {
+    h1 { font-size: 32px; }
+    .card { padding: 18px; }
+    .btn { width: 100%; text-align: center; }
+}
+
+.footer-gamer {
+    background: #0a0a0a;
+    padding: 25px;
+    text-align: center;
+    border-top: 3px solid #ff00ff;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.footer-gamer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px; /* aumentei o tamanho */
+    padding: 12px 20px; /* aumentei o botão */
+    border-radius: 10px;
+    background: rgba(255, 0, 255, 0.1);
+    border: 2px solid #ff00ff;
+    transition: .3s;
+    animation: rgbText 5s linear infinite;
+}
+
+.footer-gamer a:hover {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.footer-gamer .icon {
+    animation: blinkIcon 1.2s infinite alternate;
+    font-size: 22px; /* ícones maiores */
+}
+
+/* Ícones piscando */
+@keyframes blinkIcon {
+    0% { opacity: 1; transform: scale(1); color: #ff0000; }
+    25% { opacity: 0.8; transform: scale(1.1); color: #00ff00; }
+    50% { opacity: 1; transform: scale(1); color: #0000ff; }
+    75% { opacity: 0.9; transform: scale(1.05); color: #ff00ff; }
+    100% { opacity: 1; transform: scale(1); color: #ff0000; }
+}
+
+/* RGB respirando para links/títulos */
+@keyframes rgbText {
+    0% { color: #ff0000; }
+    14% { color: #ff7f00; }
+    28% { color: #ffff00; }
+    42% { color: #00ff00; }
+    56% { color: #0000ff; }
+    70% { color: #4b0082; }
+    84% { color: #8f00ff; }
+    100% { color: #ff0000; }
+}
+
+
+.faq-card {
+    background: #111;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #333;
+}
+
+.faq-card h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    animation: rgbText 5s linear infinite;
+}
+
+.faq-card {
+    background: #111;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #333;
+}
+
+.faq-card h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    animation: rgbText 5s linear infinite;
+}
+
+/* Accordion FAQ */
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(255,0,255,0.1);
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: .3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question:hover {
+    background: rgba(255,0,255,0.25);
+    box-shadow: 0 0 10px #ff00ff;
+    transform: scale(1.02);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    background: #222;
+    margin-top: 5px;
+    border-radius: 0 0 8px 8px;
+    padding: 0 20px;
+    color: #ddd;
+}
+.faq-answer.open {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* RGB título / texto */
+@keyframes rgbText {
+    0% { color: #ff0000; }
+    14% { color: #ff7f00; }
+    28% { color: #ffff00; }
+    42% { color: #00ff00; }
+    56% { color: #0000ff; }
+    70% { color: #4b0082; }
+    84% { color: #8f00ff; }
+    100% { color: #ff0000; }
+}
+
+</style>
+
+</head>
+<body>
+
+
+
+
+<header>
+    <h1>Pikicel Bot</h1>
+    <p class="subtitle">O bot WhatsApp mais brabo, rápido e estiloso.</p>
+</header>
+
+<footer class="footer-gamer">
+    <div class="footer-content">
+        <div>
+            <a href="https://wa.me/5575998731210" target="_blank">
+                <span class="icon">📲</span> WhatsApp
+            </a>
+        </div>
+        <div>
+            <a href="https://discord.com/users/1402061687309471835" target="_blank">
+                <span class="icon">💬</span> Discord
+            </a>
+        </div>
+        <div>
+            <span class="icon">©</span> 2025 Pikicel Bot - Desenvolvido por Vitor
+        </div>
+    </div>
+</footer>
+
+
+<div class="container">
+
+  <div class="card">
+    <h2>🔥 Sobre o Pikicel Bot</h2>
+
+    <p>
+        O Pikicel Bot não é só mais um botzinho qualquer…  
+        Ele é o reforço de elite do WhatsApp — rápido, preciso e cheio de recursos de alto nível.  
+        Criado para dominar grupos, automatizar tudo e deixar qualquer conversa mais divertida, segura e organizada.
+    </p>
+
+    <ul>
+        <li>⚡ Velocidade absurda nas respostas</li>
+        <li>🛡️ Moderação automática pra manter o grupo limpo</li>
+        <li>🎭 Diversão garantida com figurinhas, memes e efeitos</li>
+        <li>🎧 Download de música, vídeo e mídia direto do WhatsApp</li>
+        <li>🤖 Recursos IA que deixam o grupo mais interativo</li>
+        <li>🔗 Antilink / antiflood pra ninguém causar desordem</li>
+        <li>📂 Gerenciamento avançado com comandos de admin</li>
+        <li>🎮 Modo gamer estiloso com estética dark, neon e interface moderna</li>
+        <li>🧩 Sistema sempre atualizado com novas funções entrando direto no bot</li>
+    </ul>
+
+    <p>
+        O Pikicel Bot foi feito pra quem quer desempenho, estilo e força.  
+        Simples, bruto, elegante.  
+        Pronto pra elevar o teu grupo a outro nível.
+    </p>
+</div>
+
+
+
+    <div class="card">
+        <h2>⚙️ Principais Funções</h2>
+        <ul>
+            <li>✔ Comandos de figurinhas</li>
+            <li>✔ Download de vídeos, músicas e mídias</li>
+            <li>✔ Sistema de Administração</li>
+            <li>✔ Antilink / AntiFlood</li>
+            <li>✔ Inteligência Artificial integrada</li>
+            <li>✔ Muito mais…</li>
+        </ul>
+    </div>
+
+    <div class="card faq-card">
+    <h2>❓ Perguntas Frequentes</h2>
+    
+    <div class="faq-item">
+        <button class="faq-question">Como alugar o Pikicel Bot?</button>
+        <div class="faq-answer">
+            <p>Basta escolher um plano acima e clicar no botão correspondente. Você será direcionado ao WhatsApp para finalizar a contratação.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question">Quais são os comandos principais?</button>
+        <div class="faq-answer">
+            <p>Alguns dos comandos mais usados: <strong>menu</strong>, <strong>sticker</strong>, <strong>downloads</strong>, <strong>antilink</strong>, <strong>ping</strong> e <strong>tagadm</strong>.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question">O bot funciona em grupos grandes?</button>
+        <div class="faq-answer">
+            <p>Sim! O Pikicel Bot foi otimizado para lidar com grupos de qualquer tamanho sem perder velocidade ou estabilidade.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question">O bot tem moderação automática?</button>
+        <div class="faq-answer">
+            <p>Sim! Ele detecta links, flood, mensagens indevidas e pode agir automaticamente conforme as regras do grupo.</p>
+        </div>
+    </div>
+
+</div>
+
+
+    <div class="card">
+        <h2>📲 Como usar?</h2>
+        <p>Entre no WhatsApp e chame o bot no número abaixo:</p>
+        <a class="btn" href="https://wa.me/5575998731210">CLICAR PARA CHAMAR</a>
+    </div>
+
+  <div class="card">
+    <h2>💰 Planos de Aluguel</h2>
+    <p>Simples, prático e direto ao ponto.</p>
+    <p>Clique em um botão para alugar.</p>
+
+   <ul class="planos">
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%201%20m%C3%AAs%20por%205%20reais">🔹 1 Mês — <strong>R$5</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%202%20meses%20por%2010%20reais">🔹 2 Meses — <strong>R$10</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%203%20meses%20por%2015%20reais">🔹 3 Meses — <strong>R$15</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%204%20meses%20por%2020%20reais">🔹 4 Meses — <strong>R$20</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%205%20meses%20por%2025%20reais">🔹 5 Meses — <strong>R$25</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%206%20meses%20por%2030%20reais">🔹 6 Meses — <strong>R$30</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%207%20meses%20por%2035%20reais">🔹 7 Meses — <strong>R$35</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%208%20meses%20por%2040%20reais">🔹 8 Meses — <strong>R$40</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%209%20meses%20por%2045%20reais">🔹 9 Meses — <strong>R$45</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%2010%20meses%20por%2050%20reais">🔹 10 Meses — <strong>R$50</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%2011%20meses%20por%2055%20reais">🔹 11 Meses — <strong>R$55</strong></a></li>
+
+    <li><a href="https://wa.me/5575998731210?text=Quero%20alugar%2012%20meses%20por%2060%20reais">🔹 12 Meses — <strong>R$60</strong></a></li>
+
+    <li class="permanente">
+        <a href="https://wa.me/5575998731210?text=Quero%20o%20plano%20permanente%20por%2090%20reais">
+            🔥 Plano Permanente — <strong>R$90</strong>
+        </a>
+    </li>
+</ul>
+
+</div>
+
+<footer>
+    © 2025 Pikicel Bot - Desenvolvido por Vitor
+</footer>
+
+</body>
+</html>
