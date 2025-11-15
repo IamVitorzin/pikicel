@@ -233,29 +233,13 @@ header::after {
     animation: rgbText 5s linear infinite;
 }
 
-.faq-card {
-    background: #111;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    border: 2px solid #333;
-}
-
-.faq-card h2 {
-    text-align: center;
-    font-size: 26px;
-    margin-bottom: 20px;
-    animation: rgbText 5s linear infinite;
-}
-
-/* Accordion FAQ */
 .faq-item {
     margin-bottom: 10px;
 }
 
 .faq-question {
     width: 100%;
-    padding: 12px 20px;
+    padding: 15px 20px;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
@@ -286,6 +270,7 @@ header::after {
     padding: 0 20px;
     color: #ddd;
 }
+
 .faq-answer.open {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -303,11 +288,34 @@ header::after {
     100% { color: #ff0000; }
 }
 
+
+
 </style>
 
 </head>
 <body>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const faqs = document.querySelectorAll('.faq-question');
+
+    faqs.forEach(faq => {
+        faq.addEventListener('click', () => {
+            const answer = faq.nextElementSibling;
+
+            // Alterna a classe open
+            answer.classList.toggle('open');
+
+            // Ajusta altura dinamicamente
+            if(answer.style.maxHeight){
+                answer.style.maxHeight = null;
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+});
+</script>
 
 
 
@@ -375,6 +383,39 @@ header::after {
             <li>✔ Muito mais…</li>
         </ul>
     </div>
+
+    <div class="card faq-card">
+    <h2>❓ Perguntas Frequentes</h2>
+    
+    <div class="faq-item">
+        <button class="faq-question">Como alugar o Pikicel Bot?</button>
+        <div class="faq-answer">
+            <p>Basta escolher um plano no final do site e clicar no botão correspondente. Você será direcionado ao WhatsApp para finalizar a contratação.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question">Quais são os comandos principais?</button>
+        <div class="faq-answer">
+            <p>Alguns dos comandos mais usados: <strong>menu</strong>, <strong>sticker</strong>, <strong>antilink</strong> e <strong>ping</strong>.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question">O bot funciona em grupos grandes?</button>
+        <div class="faq-answer">
+            <p>Sim! O Pikicel Bot foi otimizado para lidar com grupos de qualquer tamanho sem perder velocidade ou estabilidade.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question">O bot tem moderação automática?</button>
+        <div class="faq-answer">
+            <p>Sim! Ele detecta links, flood, mensagens indevidas e pode agir automaticamente conforme as regras do grupo.</p>
+        </div>
+    </div>
+
+</div>
 
     <div class="card">
         <h2>📲 Como usar?</h2>
